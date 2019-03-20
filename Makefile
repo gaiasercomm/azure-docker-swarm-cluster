@@ -1,6 +1,6 @@
 # Set environment variables
 export RESOURCE_GROUP?=swarm-cluster
-export LOCATION?=eastus
+export LOCATION?=southeastasia
 export MASTER_COUNT?=1
 export AGENT_COUNT?=3
 export MASTER_FQDN=$(RESOURCE_GROUP)-master0.$(LOCATION).cloudapp.azure.com
@@ -50,6 +50,7 @@ deploy-cluster:
 		--name cli-$(LOCATION) \
 		--output table \
 		--no-wait
+#		--debug
 
 # Destroy the entire resource group and all cluster resources
 destroy-cluster:
@@ -214,3 +215,7 @@ list-endpoints:
 		--resource-group $(RESOURCE_GROUP) \
 		--query '[].{dnsSettings:dnsSettings.fqdn}' \
 		--output table
+
+# SSH to master node
+ssh-master:
+	$(SSH_TO_MASTER)

@@ -97,3 +97,5 @@ ENV/
 
 parameters
 keys
+
+.DS_Store
